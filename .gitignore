@@ -1,0 +1,6 @@
+/.pipenv/*
+!/.pipenv/.gitkeep
+/.jupyter-data/*
+!/.jupyter-data/.gitkeep
+
+/.ipynb_checkpoints

@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  jupyter:
+    build: .docker/jupyter
+    volumes:
+      - .:/jupyter-notebook
+      - .jupyter-data:/.local/
+    working_dir: /jupyter-notebook
+    ports:
+      - 8889:8888
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      # @link https://github.com/pypa/pipenv/blob/master/docs/advanced.rst#-custom-virtual-environment-location
+      WORKON_HOME: /jupyter-notebook/.pipenv
+
+      POSTGRES_HOST: postgres
+
+  postgres:
+    image: postgres:10-alpine
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
